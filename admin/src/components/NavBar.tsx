@@ -1,41 +1,25 @@
-"use client";
+"use client"; // ✅ Ensures it's treated as a Client Component
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
 export default function Navbar() {
-  const { data: session } = useSession(); // ✅ Removed "/Dashboard"
+  const { data: session } = useSession(); // ✅ Works only in Client Components
 
   return (
     <nav className="bg-gray-900 text-white p-4 flex justify-between items-center">
-      <Link href="/" className="text-xl font-bold">
-        My E-Commerce
-      </Link>
+      <Link href="/" className="text-xl font-bold">My E-Commerce</Link>
 
       <div className="flex gap-4">
-        <Link href="/products" className="hover:text-gray-400">
-          Products
-        </Link>
+        <Link href="/products" className="hover:text-gray-400">Products</Link>
 
         {session ? (
           <>
-            <Link href="/dashboard" className="hover:text-gray-400">
-              Dashboard
-            </Link>
-            <button
-              onClick={() => signOut()}
-              className="bg-red-500 px-4 py-2 rounded-md hover:bg-red-600"
-            >
-              Sign Out
-            </button>
+            <Link href="/dashboard" className="hover:text-gray-400">Dashboard</Link>
+            <button onClick={() => signOut()} className="bg-red-500 px-4 py-2 rounded-md hover:bg-red-600">Sign Out</button>
           </>
         ) : (
-          <button
-            onClick={() => signIn()}
-            className="bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600"
-          >
-            Sign In
-          </button>
+          <button onClick={() => signIn()} className="bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600">Sign In</button>
         )}
       </div>
     </nav>
