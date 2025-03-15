@@ -4,6 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
+ 
+
 declare module "next-auth" {
   interface Session {
     user: {
@@ -54,4 +56,4 @@ export const authOptions = {
 };
 
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }; 

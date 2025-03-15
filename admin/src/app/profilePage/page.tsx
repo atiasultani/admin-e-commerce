@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -12,7 +13,15 @@ export default function ProfilePage() {
       <h1 className="text-2xl font-bold">User Profile</h1>
       <p className="text-gray-600">Name: {session.user?.name}</p>
       <p className="text-gray-600">Email: {session.user?.email}</p>
-      {session.user?.image && <img src={session.user.image} alt="User avatar" className="w-16 h-16 rounded-full mt-4" />}
+      {session.user?.image && 
+        <Image 
+          src={session.user.image} 
+          alt="User avatar" 
+          width={64} 
+          height={64} 
+          className="rounded-full mt-4"
+        />
+      }
     </div>
   );
 }
